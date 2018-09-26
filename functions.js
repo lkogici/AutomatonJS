@@ -15,7 +15,7 @@ const qZero = (sentence) => {
     if (x === 'a') {
         return printTransition(x, 'qZero', 'qZero') || qZero(sentence);
     } else if (x === 'b') {
-        return qOne(sentence);
+        return printTransition(x, 'qZero', 'qOne') || qOne(sentence);
     } else {
         return isFinal('qZero');
     }
@@ -24,9 +24,9 @@ const qZero = (sentence) => {
 const qOne = (sentence) => {
     let x = sentence.shift();
     if (x === 'a') {
-        return qOne(sentence);
+        return printTransition(x, 'qOne', 'qOne') || qOne(sentence);
     } else if (x === 'b') {
-        return qZero(sentence);
+        return printTransition(x, 'qOne', 'qZero') || qZero(sentence);
     } else {
         return isFinal('qOne');
     }
